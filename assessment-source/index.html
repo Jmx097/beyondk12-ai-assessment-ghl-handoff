@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The 5-Minute AI Readiness Assessment for K-12 Schools | BeyondK12</title>
+<meta name="description" content="A free 8-question diagnostic for Principals and Heads of School. Score your AI policy, curriculum, guardrails, and federal funding readiness — and see what to fix first." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" />
+<style>
+  :root {
+    color-scheme: light;
+    /* BeyondK12-aligned palette: deep navy + light accent + clean white */
+    --navy:        #0a1f44;
+    --navy-soft:   #142e5e;
+    --accent:      #4ea8d6;   /* lightAccent — sky blue */
+    --accent-soft: #d9ecf6;
+    --paper:       #ffffff;
+    --bg:          #ffffff;
+    --bg-alt:      #f6f8fb;
+    --ink:         #1a2233;
+    --muted:       #6b7484;
+    --line:        #e2e6ee;
+    --green:       #2a8a5f;
+    --green-soft:  #dff1e8;
+    --amber:       #c9842a;
+    --amber-soft:  #fdebcf;
+    --red:         #b3322a;
+    --red-soft:    #fadbd7;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+  .display {
+    font-family: "Oswald", "Inter", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+    font-weight: 700;
+    line-height: 1.05;
+  }
+  .display .accent, .accent-text { color: var(--accent); }
+  a { color: var(--navy); }
+
+  /* ==========================================================
+     LAYOUT — generous spacing throughout
+     ========================================================== */
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  @media (max-width: 600px) { .container { padding: 0 22px; } }
+
+  section {
+    padding: 96px 0;
+  }
+  @media (max-width: 720px) { section { padding: 64px 0; } }
+
+  /* ==========================================================
+     TOP STRIP & NAV
+     ========================================================== */
+  .topstrip {
+    background: var(--navy);
+    color: #d6e1f2;
+    padding: 12px 24px;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .topstrip strong { color: var(--accent); font-weight: 600; }
+
+  .nav-wrap {
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .nav {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 22px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--navy);
+    letter-spacing: 0.02em;
+  }
+  .brand .accent { color: var(--accent); }
+  .nav-meta {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+  @media (max-width: 720px) { .nav-meta { display: none; } }
+
+  /* ==========================================================
+     HERO
+     ========================================================== */
+  .hero {
+    background: var(--bg);
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  @media (max-width: 920px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+  }
+  .eyebrow {
+    color: var(--accent);
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    margin-bottom: 24px;
+  }
+  h1.display {
+    font-size: clamp(38px, 5.5vw, 64px);
+    color: var(--navy);
+    margin: 0 0 28px;
+  }
+  .lede {
+    font-size: 19px;
+    color: var(--ink);
+    max-width: 540px;
+    margin: 0 0 36px;
+    line-height: 1.65;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 0;
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 40px;
+  }
+  .meta-row span {
+    padding: 0 18px;
+    border-right: 1px solid var(--line);
+  }
+  .meta-row span:first-child { padding-left: 0; }
+  .meta-row span:last-child { border-right: none; }
+
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .btn {
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 16px 30px;
+    border-radius: 2px;
+    cursor: pointer;
+    border: none;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--navy);
+  }
+  .btn-primary:hover { background: #6abad9; transform: translateY(-1px); }
+  .btn-dark {
+    background: var(--navy);
+    color: var(--paper);
+  }
+  .btn-dark:hover { background: var(--navy-soft); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    padding: 14.5px 28px;
+  }
+  .btn-ghost:hover { background: var(--navy); color: var(--paper); }
+  .btn .arrow { transition: transform 0.18s ease; }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* Hero card (right column) */
+  .hero-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 40px;
+    position: relative;
+  }
+  .hero-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 64px; height: 4px;
+    background: var(--accent);
+  }
+  .hero-card h3.display {
+    font-size: 22px;
+    color: var(--navy);
+    margin: 0 0 24px;
+  }
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+  }
+  .checklist li {
+    padding: 14px 0 14px 36px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 18px; height: 18px;
+    background: var(--accent);
+    -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center / contain no-repeat;
+            mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center / contain no-repeat;
+  }
+
+  /* ==========================================================
+     PROGRAMS / VALUE BAR — three-card row
+     ========================================================== */
+  .programs-section {
+    background: var(--bg-alt);
+  }
+  .programs-head { text-align: center; margin-bottom: 64px; }
+  .programs-head h2.display {
+    font-size: clamp(28px, 4vw, 40px);
+    color: var(--navy);
+    margin: 8px 0 16px;
+  }
+  .programs-head p {
+    color: var(--muted);
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 17px;
+  }
+  .programs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 880px) { .programs { grid-template-columns: 1fr; gap: 22px; } }
+  .program {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 36px 32px;
+  }
+  .program-icon {
+    width: 56px; height: 56px;
+    background: var(--accent-soft);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 22px;
+    color: var(--navy);
+  }
+  .program h3.display {
+    font-size: 18px;
+    color: var(--navy);
+    margin: 0 0 12px;
+  }
+  .program h3.display .accent { color: var(--accent); }
+  .program p {
+    color: var(--muted);
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  /* ==========================================================
+     ASSESSMENT
+     ========================================================== */
+  .assessment-section { background: var(--bg-alt); padding: 96px 0 120px; }
+  .quiz-head { text-align: center; margin-bottom: 56px; }
+  .quiz-head h2.display {
+    font-size: clamp(28px, 4vw, 40px);
+    color: var(--navy);
+    margin: 8px 0 16px;
+  }
+  .quiz-head p { color: var(--muted); font-size: 17px; max-width: 600px; margin: 0 auto; }
+
+  .quiz-card {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 56px;
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+  }
+  @media (max-width: 600px) { .quiz-card { padding: 32px 24px; } }
+
+  .progress-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .progress-row .step-label { color: var(--navy); font-weight: 600; }
+  .progress-bar {
+    background: var(--line);
+    height: 4px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+  .progress-fill {
+    background: var(--accent);
+    height: 100%;
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .question-num {
+    color: var(--accent);
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    margin-bottom: 16px;
+  }
+  .question-text {
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: clamp(24px, 3.6vw, 32px);
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: 0.005em;
+    margin: 0 0 14px;
+  }
+  .question-help {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 36px;
+    line-height: 1.65;
+  }
+  .options { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .option {
+    background: var(--paper);
+    border: 1.5px solid var(--line);
+    padding: 18px 22px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-size: 15.5px;
+    font-weight: 500;
+    color: var(--ink);
+    text-align: left;
+    transition: border-color 0.14s ease, background 0.14s ease, transform 0.12s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-radius: 2px;
+  }
+  .option:hover {
+    border-color: var(--navy);
+    background: var(--bg-alt);
+    transform: translateX(2px);
+  }
+  .option.selected {
+    border-color: var(--navy);
+    background: var(--navy);
+    color: var(--paper);
+  }
+  .option .pts {
+    font-family: "Oswald", sans-serif;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  .option.selected .pts { color: var(--accent); }
+
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+    gap: 12px;
+  }
+  .btn-back {
+    background: transparent;
+    color: var(--muted);
+    border: none;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 14px 0;
+    font-weight: 500;
+  }
+  .btn-back:hover:not(:disabled) { color: var(--navy); }
+  .btn-back:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .btn-next {
+    background: var(--navy);
+    color: var(--paper);
+    border: none;
+    padding: 14px 30px;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.12s ease;
+    border-radius: 2px;
+  }
+  .btn-next:hover:not(:disabled) { background: var(--navy-soft); }
+  .btn-next:disabled { background: var(--line); color: var(--muted); cursor: not-allowed; }
+
+  /* ==========================================================
+     LEAD CAPTURE
+     ========================================================== */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+  .form-grid label {
+    display: block;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: var(--navy);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+  }
+  .form-grid label .req { color: var(--accent); margin-left: 3px; }
+  .form-grid input, .form-grid select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid var(--line);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    border-radius: 2px;
+    transition: border-color 0.15s ease;
+  }
+  .form-grid input:focus, .form-grid select:focus { outline: none; border-color: var(--navy); }
+  .form-full { grid-column: 1 / -1; }
+  .privacy-note {
+    color: var(--muted);
+    font-size: 12.5px;
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  /* ==========================================================
+     RESULTS
+     ========================================================== */
+  .result-tier {
+    text-align: center;
+    padding: 24px 0 40px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 48px;
+  }
+  .score-num {
+    font-family: "Oswald", sans-serif;
+    font-weight: 700;
+    font-size: 88px;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    color: var(--navy);
+  }
+  .score-out { font-size: 28px; color: var(--muted); font-family: "Oswald", sans-serif; font-weight: 500; }
+  .tier-badge {
+    display: inline-block;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    padding: 8px 20px;
+    border-radius: 2px;
+    margin: 20px 0 18px;
+  }
+  .tier-badge.tier-leader  { background: var(--green-soft); color: var(--green); }
+  .tier-badge.tier-aware   { background: var(--accent-soft); color: var(--navy); }
+  .tier-badge.tier-risk    { background: var(--amber-soft); color: var(--amber); }
+  .tier-badge.tier-unprep  { background: var(--red-soft); color: var(--red); }
+
+  .tier-headline {
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-size: clamp(22px, 3vw, 28px);
+    color: var(--navy);
+    letter-spacing: 0.005em;
+    line-height: 1.2;
+    max-width: 580px;
+    margin: 0 auto;
+    font-weight: 600;
+  }
+
+  .breakdown { display: grid; gap: 18px; margin-bottom: 48px; }
+  .pillar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 16px;
+    padding: 18px 22px;
+    background: var(--bg-alt);
+    align-items: center;
+  }
+  .pillar-name {
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+  }
+  .pillar-status {
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+  }
+  .pillar-bar { grid-column: 1 / -1; height: 4px; background: var(--line); overflow: hidden; }
+  .pillar-fill { height: 100%; transition: width 0.6s ease; }
+
+  .recs {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    padding: 32px 36px;
+    margin-bottom: 40px;
+  }
+  .recs h4.display {
+    font-size: 19px;
+    color: var(--navy);
+    margin: 0 0 18px;
+  }
+  .recs ol {
+    margin: 0;
+    padding-left: 22px;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .recs ol li { margin-bottom: 14px; }
+  .recs ol li strong { color: var(--navy); }
+
+  .next-steps-cta {
+    background: var(--navy);
+    color: var(--paper);
+    padding: 56px 40px;
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .next-steps-cta::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 50%; transform: translateX(-50%);
+    width: 64px; height: 4px;
+    background: var(--accent);
+  }
+  .next-steps-cta h4.display {
+    font-size: clamp(22px, 3vw, 28px);
+    margin: 0 0 14px;
+    color: var(--paper);
+  }
+  .next-steps-cta h4.display .accent { color: var(--accent); }
+  .next-steps-cta p {
+    color: #c4d0e6;
+    margin: 0 auto 28px;
+    font-size: 16px;
+    max-width: 520px;
+    line-height: 1.65;
+  }
+
+  /* ==========================================================
+     SOCIAL PROOF
+     ========================================================== */
+  .proof-section { background: var(--navy); color: #d6e1f2; padding: 104px 0; }
+  .proof-head { text-align: center; margin-bottom: 64px; }
+  .proof-head h3.display {
+    font-size: clamp(28px, 4vw, 40px);
+    color: var(--paper);
+    margin: 0 0 14px;
+  }
+  .proof-head h3.display .accent { color: var(--accent); }
+  .proof-head p { color: #aab8d1; font-size: 16px; max-width: 580px; margin: 0 auto; }
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .testimonial {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(78, 168, 214, 0.32);
+    padding: 32px 28px;
+    position: relative;
+  }
+  .testimonial::before {
+    content: "\201C";
+    position: absolute;
+    top: 4px; left: 18px;
+    font-size: 64px;
+    font-family: "Oswald", serif;
+    color: var(--accent);
+    opacity: 0.5;
+    line-height: 1;
+  }
+  .testimonial blockquote {
+    color: var(--paper);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 24px 0 18px;
+    font-weight: 400;
+  }
+  .testimonial cite {
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0.14em;
+  }
+  .testimonial cite span { display: block; color: #aab8d1; font-weight: 400; margin-top: 4px; letter-spacing: 0.04em; text-transform: none; font-family: "Inter", sans-serif; font-size: 12.5px; }
+
+  /* ==========================================================
+     FOOTER
+     ========================================================== */
+  footer {
+    background: #061634;
+    color: #aab8d1;
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  .hide { display: none !important; }
+
+  /* Animations */
+  .step { animation: fadeIn 0.32s ease-out; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  if (location.hostname === 'beyondk12audit.plinkosolutions.com') {
+    location.replace('https://beyondk12-ai-assessment.plinkosolutions.com' + location.pathname + location.search + location.hash);
+  }
+</script>
+</head>
+<body>
+
+<div class="topstrip">
+  Federal AI Priority Funding window is open right now. <strong>Most K-12 schools leave $20–40k on the table.</strong>
+</div>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <div class="brand">Beyond<span class="accent">K12</span></div>
+    <div class="nav-meta">AI &amp; Digital Literacy Partner for K-12 Education</div>
+  </nav>
+</div>
+
+<!-- ============================================================
+     HERO / INTRO STEP
+     ============================================================ -->
+<section class="hero" id="step-intro">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">For Principals &amp; Heads of School</div>
+      <h1 class="display">Is your school ready for <span class="accent">AI in the classroom</span> — or just hoping for the best?</h1>
+      <p class="lede">
+        Eight short questions. Five minutes. You'll see exactly where your school stands on AI policy, teacher readiness, student guardrails, curriculum integration, and federal funding eligibility — and what to fix first.
+      </p>
+      <div class="meta-row">
+        <span>5 minutes</span>
+        <span>8 questions</span>
+        <span>Diagnostic only — no sales pitch</span>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn-primary" onclick="goToStep('q')">
+          Start the assessment <span class="arrow">→</span>
+        </button>
+        <button class="btn btn-ghost" onclick="document.getElementById('proof').scrollIntoView({behavior:'smooth'})">
+          See partner schools
+        </button>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <div class="eyebrow" style="margin-bottom:14px;">What you'll receive</div>
+      <h3 class="display">Your scored readiness report</h3>
+      <ul class="checklist">
+        <li>An overall AI readiness score, 0–24</li>
+        <li>A breakdown across Policy, People, Curriculum, Guardrails, Funding</li>
+        <li>The three highest-leverage fixes for your tier</li>
+        <li>An estimate of federal funding your school may be eligible for</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- ============================================================
+     THREE PROGRAM PILLARS — mirrors beyondk12.com structure
+     ============================================================ -->
+<section class="programs-section" id="programs-block">
+  <div class="container">
+    <div class="programs-head">
+      <div class="eyebrow">What this assessment measures</div>
+      <h2 class="display">Three pillars of <span class="accent">AI readiness</span></h2>
+      <p>Every BeyondK12 engagement is built on the same three program pillars. This assessment scores your school across all of them in five minutes.</p>
+    </div>
+    <div class="programs">
+
+      <div class="program">
+        <div class="program-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <h3 class="display"><span class="accent">AI Curriculum</span> Architects</h3>
+        <p>K–12 lesson plans, classroom integration, and teacher PD that turn AI from a threat into a learning accelerator.</p>
+      </div>
+
+      <div class="program">
+        <div class="program-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3 class="display"><span class="accent">AI Strategy</span> &amp; Guardrails</h3>
+        <p>Board-ready AI policy, parent-facing FAQs, technical filtering, and incident response plans that hold up under scrutiny.</p>
+      </div>
+
+      <div class="program">
+        <div class="program-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+          </svg>
+        </div>
+        <h3 class="display"><span class="accent">AI Education</span> &amp; Funding</h3>
+        <p>Federal AI Priority Funding, Title II, Title IV, E-Rate Category Two, and ESSER successor allocations — applied for, secured, and stewarded.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ASSESSMENT STEP
+     ============================================================ -->
+<section class="assessment-section hide" id="step-q">
+  <div class="container">
+    <div class="quiz-head">
+      <div class="eyebrow">Step 1 of 2</div>
+      <h2 class="display">The <span class="accent">5-minute</span> readiness assessment</h2>
+      <p>Answer honestly. Nobody outside your school sees these answers — they're used only to tailor your report.</p>
+    </div>
+
+    <div class="quiz-card">
+      <div class="progress-row">
+        <span class="step-label" id="stepLabel">Question 1 of 8</span>
+        <span id="pillarLabel">Policy</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+      <div class="step" id="qContainer"><!-- populated by JS --></div>
+
+      <div class="nav-row">
+        <button class="btn-back" id="btnBack" onclick="prevQ()" disabled>← Back</button>
+        <button class="btn-next" id="btnNext" onclick="nextQ()" disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     LEAD CAPTURE STEP
+     ============================================================ -->
+<section class="assessment-section hide" id="step-lead">
+  <div class="container">
+    <div class="quiz-head">
+      <div class="eyebrow">Step 2 of 2</div>
+      <h2 class="display">Where should we send <span class="accent">your report</span>?</h2>
+      <p>We use this to review your federal-funding eligibility and to reference comparable schools or districts in your size range.</p>
+    </div>
+
+    <div class="quiz-card">
+      <div class="step">
+        <form class="form-grid" id="leadForm" onsubmit="submitLead(event)">
+          <div>
+            <label>First name <span class="req">*</span></label>
+            <input type="text" id="firstName" required />
+          </div>
+          <div>
+            <label>Last name <span class="req">*</span></label>
+            <input type="text" id="lastName" required />
+          </div>
+          <div>
+            <label>Your title <span class="req">*</span></label>
+            <select id="title" required>
+              <option value="">Select…</option>
+              <option>Principal / Head of School</option>
+              <option>Assistant Principal / Vice Principal</option>
+              <option>Director of Technology</option>
+              <option>Director of Curriculum</option>
+              <option>Tech Coordinator</option>
+              <option>Pastor / Board Member</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label>School name <span class="req">*</span></label>
+            <input type="text" id="school" required />
+          </div>
+          <div>
+            <label>City &amp; state <span class="req">*</span></label>
+            <input type="text" id="city" placeholder="e.g. San Pedro, CA" required />
+          </div>
+          <div>
+            <label>Approx. enrollment</label>
+            <select id="enrollment">
+              <option value="">Select…</option>
+              <option>Under 100</option>
+              <option>100–250</option>
+              <option>251–500</option>
+              <option>501+</option>
+            </select>
+          </div>
+          <div class="form-full">
+            <label>School email <span class="req">*</span></label>
+            <input type="email" id="email" required placeholder="principal@yourschool.org" />
+          </div>
+          <div class="form-full">
+            <p class="privacy-note">By submitting, you consent to receive your readiness report and one follow-up email from BeyondK12. We do not sell or share your information. Unsubscribe at any time.</p>
+          </div>
+          <div class="form-full" style="display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;">
+            <button type="button" class="btn-back" onclick="goToStep('q'); current = total-1; renderQ();">← Back to questions</button>
+            <button type="submit" class="btn-next">Show my report →</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     RESULTS STEP
+     ============================================================ -->
+<section class="assessment-section hide" id="step-result">
+  <div class="container">
+    <div class="quiz-head">
+      <div class="eyebrow" id="resultGreeting">Your AI readiness report</div>
+      <h2 class="display">Your <span class="accent">scored</span> assessment</h2>
+    </div>
+
+    <div class="quiz-card">
+      <div class="result-tier">
+        <div>
+          <span class="score-num" id="scoreNum">0</span><span class="score-out">/24</span>
+        </div>
+        <div class="tier-badge" id="tierBadge">Calculating…</div>
+        <div class="tier-headline" id="tierHeadline"></div>
+      </div>
+
+      <div class="eyebrow" style="text-align:left; margin-bottom:18px;">By Pillar</div>
+      <div class="breakdown" id="breakdown"></div>
+
+      <div class="recs">
+        <h4 class="display">Your three highest-leverage fixes</h4>
+        <ol id="recsList"></ol>
+      </div>
+
+      <div class="next-steps-cta">
+        <h4 class="display">Want a 30-minute working session — <span class="accent">free</span>?</h4>
+        <p>
+          BeyondK12 can help you turn these results into a practical next-step plan. Explore options for AI guardrails, curriculum planning, and funding readiness based on your school's needs.
+        </p>
+        <button class="btn btn-primary" onclick="bookNextSteps()">
+          Talk with BeyondK12 about next steps <span class="arrow">→</span>
+        </button>
+      </div>
+
+      <div style="text-align:center;">
+        <button class="btn-back" onclick="restart()">↺ Retake the assessment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SOCIAL PROOF
+     ============================================================ -->
+<section class="proof-section" id="proof">
+  <div class="container">
+    <div class="proof-head">
+      <div class="eyebrow">Partner schools</div>
+      <h3 class="display">Schools we've <span class="accent">worked with</span></h3>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial">
+        <blockquote>BeyondK12 helped us go from "we should probably write an AI policy" to having one in front of our board in three weeks.</blockquote>
+        <cite>Principal<span>Southern California · 250 students</span></cite>
+      </div>
+      <div class="testimonial">
+        <blockquote>The federal funding piece alone paid for the engagement four times over. We applied for two programs we'd never heard of.</blockquote>
+        <cite>Head of School — Christian Academy<span>Arizona · 180 students</span></cite>
+      </div>
+      <div class="testimonial">
+        <blockquote>Parents stopped panicking once we had clear guardrails for ChatGPT. The teacher PD made it stick.</blockquote>
+        <cite>Director of Curriculum — Lutheran School<span>California · 320 students</span></cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 BeyondK12 &nbsp;·&nbsp; Chino Hills, CA &nbsp;·&nbsp;
+  <a href="https://www.beyondk12.com" target="_blank" rel="noopener noreferrer">beyondk12.com</a>
+</footer>
+
+<script>
+/* ================================================================
+   Assessment data — 8 questions across 5 pillars
+   ================================================================ */
+const QUESTIONS = [
+  { pillar: "Policy",
+    text: "Does your school have a written AI-usage policy for students and staff?",
+    help: "A written policy that covers ChatGPT, image generation, what's allowed, and what's not.",
+    options: [
+      { label: "Yes — comprehensive, board-approved", pts: 3 },
+      { label: "Yes — basic, but in writing",         pts: 2 },
+      { label: "In development this year",            pts: 1 },
+      { label: "No — we haven't written one yet",     pts: 0 },
+    ] },
+  { pillar: "People",
+    text: "How many of your teachers have had formal AI training in the last 12 months?",
+    help: "Formal = a workshop, professional development day, or structured course.",
+    options: [
+      { label: "Most or all of them",      pts: 3 },
+      { label: "About half",               pts: 2 },
+      { label: "A few — the curious ones", pts: 1 },
+      { label: "None — or I'm not sure",   pts: 0 },
+    ] },
+  { pillar: "Curriculum",
+    text: "Is AI &amp; digital literacy integrated into your K-12 curriculum?",
+    help: "Built into lesson plans, not just an occasional one-off conversation.",
+    options: [
+      { label: "Yes — across every grade",                pts: 3 },
+      { label: "In some grades / subjects",                pts: 2 },
+      { label: "We're talking about it",                   pts: 1 },
+      { label: "No — and we don't know where to start",    pts: 0 },
+    ] },
+  { pillar: "Guardrails",
+    text: "What guardrails do you have around student use of AI tools?",
+    help: "Both technical (filters, blocked sites) and policy (acceptable use).",
+    options: [
+      { label: "Technical filtering + written policy",  pts: 3 },
+      { label: "Policy only — no technical controls",   pts: 2 },
+      { label: "Verbal expectations / informal",        pts: 1 },
+      { label: "None in place",                          pts: 0 },
+    ] },
+  { pillar: "Funding",
+    text: "Have you applied for federal AI Priority funding, Title II, or Title IV support?",
+    help: "Title II, Title IV, E-Rate, NPS, and ESSER successor allocations. Many schools and districts qualify for at least two.",
+    options: [
+      { label: "Yes — and we've been awarded funds",      pts: 3 },
+      { label: "Yes — applied, awaiting / partial",        pts: 2 },
+      { label: "We're researching what we qualify for",    pts: 1 },
+      { label: "No — or didn't know we qualified",         pts: 0 },
+    ] },
+  { pillar: "People",
+    text: "Do you have a designated tech leader on staff?",
+    help: "Someone whose explicit job description includes 'tech direction', not just a teacher who's good with computers.",
+    options: [
+      { label: "Yes — full-time Director of Technology",  pts: 3 },
+      { label: "Part-time / shared role",                  pts: 2 },
+      { label: "Volunteer or a teacher who took it on",    pts: 1 },
+      { label: "Nobody specifically",                       pts: 0 },
+    ] },
+  { pillar: "Policy",
+    text: "When parents ask about AI safety, do you have clear answers?",
+    help: "An FAQ, parent-facing letter, or confident verbal explanation that's consistent across staff.",
+    options: [
+      { label: "Yes — written FAQ + parent communications", pts: 3 },
+      { label: "Verbal answers — consistent",                pts: 2 },
+      { label: "It depends who they ask",                    pts: 1 },
+      { label: "Honestly — no, we duck the question",        pts: 0 },
+    ] },
+  { pillar: "Guardrails",
+    text: "How confident are you in handling an AI-related incident?",
+    help: "Cheating, biased output, or misinformation. Be honest — most schools rate themselves 'somewhat confident' until something happens.",
+    options: [
+      { label: "Very confident — we have a response plan", pts: 3 },
+      { label: "Somewhat confident",                        pts: 2 },
+      { label: "Not very — we'd be improvising",            pts: 1 },
+      { label: "Worried — and not sure what to do",         pts: 0 },
+    ] },
+];
+
+let current = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+const total = QUESTIONS.length;
+const ASSESSMENT_WEBHOOK_URL = "https://n8n.plinkosolutions.com/webhook/beyondk12-ai-audit-intake-v2";
+
+function monthTabFrom(date) {
+  return date.toISOString().slice(0, 7);
+}
+
+function deliverSubmission(payload) {
+  const formData = new FormData();
+  Object.entries(payload).forEach(([key, value]) => {
+    formData.append(key, value == null ? "" : String(value));
+  });
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(ASSESSMENT_WEBHOOK_URL, formData);
+    return;
+  }
+
+  fetch(ASSESSMENT_WEBHOOK_URL, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData,
+    keepalive: true,
+  }).catch(() => {});
+}
+
+function goToStep(name) {
+  ["intro", "q", "lead", "result"].forEach(s => {
+    const el = document.getElementById("step-" + s);
+    if (el) el.classList.toggle("hide", s !== name);
+  });
+  // Show or hide the programs block (only visible on intro)
+  const progEl = document.getElementById("programs-block");
+  if (progEl) progEl.classList.toggle("hide", name !== "intro");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (name === "q") renderQ();
+}
+
+function renderQ() {
+  const q = QUESTIONS[current];
+  const container = document.getElementById("qContainer");
+  container.innerHTML = `
+    <div class="step">
+      <div class="question-num">Question ${current + 1} of ${total}</div>
+      <h2 class="question-text">${q.text}</h2>
+      <p class="question-help">${q.help}</p>
+      <div class="options" id="optionsList">
+        ${q.options.map((o, i) => `
+          <button class="option ${answers[current] === i ? 'selected' : ''}"
+                  onclick="selectOption(${i})">
+            <span>${o.label}</span>
+            <span class="pts">${o.pts} pts</span>
+          </button>
+        `).join("")}
+      </div>
+    </div>
+  `;
+  document.getElementById("stepLabel").textContent = `Question ${current + 1} of ${total}`;
+  document.getElementById("pillarLabel").textContent = q.pillar;
+  document.getElementById("progressFill").style.width = (((current + 1) / total) * 100) + "%";
+  document.getElementById("btnBack").disabled = current === 0;
+  document.getElementById("btnNext").disabled = answers[current] === null;
+  document.getElementById("btnNext").textContent = current === total - 1 ? "Continue →" : "Next →";
+}
+
+function selectOption(i) {
+  answers[current] = i;
+  document.querySelectorAll("#optionsList .option").forEach((el, idx) =>
+    el.classList.toggle("selected", idx === i));
+  document.getElementById("btnNext").disabled = false;
+}
+
+function nextQ() {
+  if (answers[current] === null) return;
+  if (current < total - 1) { current++; renderQ(); }
+  else { goToStep("lead"); }
+}
+
+function prevQ() {
+  if (current > 0) { current--; renderQ(); }
+}
+
+function submitLead(e) {
+  e.preventDefault();
+  const lead = {
+    firstName: document.getElementById("firstName").value.trim(),
+    lastName:  document.getElementById("lastName").value.trim(),
+    title:     document.getElementById("title").value,
+    school:    document.getElementById("school").value.trim(),
+    city:      document.getElementById("city").value.trim(),
+    enrollment:document.getElementById("enrollment").value,
+    email:     document.getElementById("email").value.trim(),
+  };
+  window.__bk12Lead = lead;
+  showResults(lead);
+}
+
+function showResults(lead) {
+  const pillarMax = {}, pillarScore = {};
+  QUESTIONS.forEach((q, i) => {
+    const max = Math.max(...q.options.map(o => o.pts));
+    pillarMax[q.pillar] = (pillarMax[q.pillar] || 0) + max;
+    const chosen = answers[i];
+    pillarScore[q.pillar] = (pillarScore[q.pillar] || 0) + (chosen !== null ? q.options[chosen].pts : 0);
+  });
+  const totalScore = Object.values(pillarScore).reduce((a,b) => a+b, 0);
+
+  let tier;
+  if (totalScore >= 18)      tier = { id: "leader", label: "AI Leader",     headline: `${lead.school || "Your school"} is ahead of most schools its size — let's keep it that way.` };
+  else if (totalScore >= 12) tier = { id: "aware",  label: "AI Aware",      headline: "Foundations are in place. The work now is hardening them before something breaks." };
+  else if (totalScore >= 6)  tier = { id: "risk",   label: "AI At-Risk",    headline: "There are real gaps — but every one of them is fixable in a single quarter." };
+  else                       tier = { id: "unprep", label: "AI Unprepared", headline: "This is the most common starting point. A practical next-step plan can help your school build momentum from here." };
+
+  document.getElementById("resultGreeting").textContent =
+    lead.firstName ? `${lead.firstName} · ${lead.school || "Your school"}` : "Your AI readiness report";
+  const numEl = document.getElementById("scoreNum");
+  let n = 0;
+  const ticker = setInterval(() => {
+    n++;
+    numEl.textContent = n;
+    if (n >= totalScore) clearInterval(ticker);
+  }, 45);
+
+  document.getElementById("tierBadge").textContent = tier.label;
+  document.getElementById("tierBadge").className = "tier-badge tier-" + tier.id;
+  document.getElementById("tierHeadline").textContent = tier.headline;
+
+  const pillarOrder = ["Policy", "People", "Curriculum", "Guardrails", "Funding"];
+  document.getElementById("breakdown").innerHTML = pillarOrder.map(p => {
+    const score = pillarScore[p] || 0;
+    const max = pillarMax[p] || 0;
+    const pct = max ? Math.round((score / max) * 100) : 0;
+    let status, color;
+    if (pct >= 80)      { status = "Strong";       color = "#2a8a5f"; }
+    else if (pct >= 50) { status = "Developing";   color = "#0a1f44"; }
+    else if (pct >= 25) { status = "At risk";      color = "#c9842a"; }
+    else                { status = "Critical gap"; color = "#b3322a"; }
+    return `
+      <div class="pillar">
+        <div class="pillar-name">${p}</div>
+        <div class="pillar-status" style="color:${color}">${status} &nbsp;·&nbsp; ${score}/${max}</div>
+        <div class="pillar-bar"><div class="pillar-fill" style="width:${pct}%; background:${color}"></div></div>
+      </div>
+    `;
+  }).join("");
+
+  const recsByPillar = {
+    Policy:     "Draft a 1-page AI Acceptable Use Policy. Put it in front of your board within 30 days. We can tailor a starting template to your school or district.",
+    People:     "Schedule a 90-minute teacher PD on AI fundamentals before fall semester. Most schools' lowest-leverage gap is teacher confidence, not technology.",
+    Curriculum: "Pilot AI & digital-literacy modules in 1–2 grades next semester before scaling. Pick grades whose teachers volunteer — adoption beats mandate.",
+    Guardrails: "Pair a written acceptable-use policy with classroom-level technical filtering. Either alone fails; together they hold.",
+    Funding:    "Federal AI Priority funds and E-Rate Category Two carryover are the most-overlooked sources. Schools your size routinely qualify for $20–40k.",
+  };
+  const sortedPillars = pillarOrder
+    .map(p => ({ p, ratio: (pillarScore[p] || 0) / (pillarMax[p] || 1) }))
+    .sort((a, b) => a.ratio - b.ratio)
+    .slice(0, 3);
+  document.getElementById("recsList").innerHTML = sortedPillars
+    .map(s => `<li><strong>${s.p}:</strong> ${recsByPillar[s.p]}</li>`)
+    .join("");
+
+  const submittedAt = new Date().toISOString();
+  const payload = {
+    submittedAt,
+    tabName: monthTabFrom(new Date(submittedAt)),
+    assessmentName: "BeyondK12 AI Readiness Assessment",
+    sourceUrl: window.location.href,
+    pageHost: window.location.host,
+    userAgent: navigator.userAgent,
+    fullName: `${lead.firstName || ""} ${lead.lastName || ""}`.trim(),
+    firstName: lead.firstName || "",
+    lastName: lead.lastName || "",
+    email: lead.email || "",
+    title: lead.title || "",
+    school: lead.school || "",
+    city: lead.city || "",
+    enrollment: lead.enrollment || "",
+    totalScore,
+    tierId: tier.id,
+    tierLabel: tier.label,
+    tierHeadline: tier.headline,
+    policyScore: pillarScore.Policy || 0,
+    peopleScore: pillarScore.People || 0,
+    curriculumScore: pillarScore.Curriculum || 0,
+    guardrailsScore: pillarScore.Guardrails || 0,
+    fundingScore: pillarScore.Funding || 0,
+    lowestPillars: sortedPillars.map(s => s.p).join(", "),
+    topRecommendations: sortedPillars.map(s => `${s.p}: ${recsByPillar[s.p]}`).join(" || "),
+    q1Answer: QUESTIONS[0].options[answers[0]]?.label || "",
+    q1Points: QUESTIONS[0].options[answers[0]]?.pts || 0,
+    q2Answer: QUESTIONS[1].options[answers[1]]?.label || "",
+    q2Points: QUESTIONS[1].options[answers[1]]?.pts || 0,
+    q3Answer: QUESTIONS[2].options[answers[2]]?.label || "",
+    q3Points: QUESTIONS[2].options[answers[2]]?.pts || 0,
+    q4Answer: QUESTIONS[3].options[answers[3]]?.label || "",
+    q4Points: QUESTIONS[3].options[answers[3]]?.pts || 0,
+    q5Answer: QUESTIONS[4].options[answers[4]]?.label || "",
+    q5Points: QUESTIONS[4].options[answers[4]]?.pts || 0,
+    q6Answer: QUESTIONS[5].options[answers[5]]?.label || "",
+    q6Points: QUESTIONS[5].options[answers[5]]?.pts || 0,
+    q7Answer: QUESTIONS[6].options[answers[6]]?.label || "",
+    q7Points: QUESTIONS[6].options[answers[6]]?.pts || 0,
+    q8Answer: QUESTIONS[7].options[answers[7]]?.label || "",
+    q8Points: QUESTIONS[7].options[answers[7]]?.pts || 0,
+  };
+
+  window.__bk12Submission = payload;
+  deliverSubmission(payload);
+  goToStep("result");
+}
+
+function bookNextSteps() {
+  window.open("https://crm.beyondk12.com/widget/bookings/30-min-ai-tech-plan-audit", "_blank", "noopener,noreferrer");
+}
+
+function restart() {
+  current = 0;
+  answers = new Array(QUESTIONS.length).fill(null);
+  goToStep("intro");
+}
+</script>
+
+</body>
+</html>

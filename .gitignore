@@ -1,0 +1,16 @@
+# Local / hosting state
+.vercel/
+.env
+.env.*
+!.env.example
+
+# Dependencies and generated files
+node_modules/
+dist/
+build/
+.DS_Store
+*.log
+
+# Editor state
+.vscode/
+.idea/
